@@ -16,7 +16,14 @@
 2. 然后继续开启命令行交互模式,输入命令 `mongo`   
    **mongo 命令给我提供了和mongodb交互的环境,他就是一个javascript解析器**  
 3. 开始你的mongodb之旅
-4. 如果您不想通过命令行操作,可安装可视化图形工具 `mongvue`, 1.0版本的开始收费了，[免费破解版v1.5.3](http://download.csdn.net/detail/sunboy_2050/6770483)       
+4. 如果您不想通过命令行操作,可安装可视化图形工具 `mongvue`, 1.0版本的开始收费了，[免费破解版v1.5.3](http://download.csdn.net/detail/sunboy_2050/6770483) 
+      
+## 常用命令
+1. 选择数据库
+
+
+    use dbname  
+2. 创建    
   
   
  
