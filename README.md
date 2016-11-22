@@ -15,7 +15,10 @@
   1.5 --serviceName arg  `服务器的名字`  
   1.6  --install         `在windows安装服务`  
   1.7  --uninstall   `在windows卸载服务`  
-  1.8 --reinstall    `重新安装服务`  
+  1.8 --reinstall    `重新安装服务`    
+  1.9 --port arg	`指定服务端口号，默认端口27017`   
+  1.10  --bind_ip arg    `绑定服务IP，若绑定127.0.0.1，则只能本机访问，不指定默认本地所有IP`  
+  1.11   --fork	`以守护进程的方式运行MongoDB，创建服务器进程` 
       
 ## 启动
 1. 启动命令 `mongod --dbpath='指定文件存放的目录'`  
