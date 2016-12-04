@@ -20,7 +20,47 @@
 
 # 聚合查询
 **常见的聚合操作有：count()，distinct，group，mapReduce()**  
-1. count  统计集合的数量  ``
+
+1. count  统计集合的数量   
+    1.1 db.collection.find().conut()   
+    1.2 db.collection.count({"name":"zhangsan"})      
+2. distinct   统计指定条件的集合   
+    1.1 db.collection.distinct("name")   
+3. group   group做的聚合有些复杂。先选定分组所依据的键，此后MongoDB就会将集合依据选定键值的不同分成若干组。然后可以通过聚合每一组内的文档，产生一个结果文档  
+
+        /*这里将用day作为group的分组键，然后取出time键值为最新时间戳的文档，同时也取出该文档的price键值。*/
+            > db.test.group( {
+            ... "key" : {"day":true},           /*如果是多个字段，可以为{"f1":true,"f2":true}*/
+            ... "initial" : {"time" : "0"},       /*initial表示$reduce函数参数prev的初始值。每个组都有一份该初始值。*/
+            ... "$reduce" : function(doc,prev) {  /*reduce函数接受两个参数，doc表示正在迭代的当前文档，prev表示累加器文档。*/
+            ...     if (doc.time > prev.time) {
+            ...         prev.day = doc.day
+            ...         prev.price = doc.price;
+            ...         prev.time = doc.time;
+            ...     }
+            ... } } )
+        /*下面的例子是统计每个分组内文档的数量。*/
+           
+                > db.test.group( {
+                ... key: { day: true},
+                ... initial: {count: 0},
+                ... reduce: function(obj,prev){ prev.count++;},
+                ... } )
+        /*最后一个是通过完成器修改reduce结果的例子*/
+        db.test.group( {
+            ... key: { day: true},
+            ... initial: {count: 0},
+            ... reduce: function(obj,prev){ prev.count++;},
+            ... finalize: function(out){ out.scaledCount = out.count * 10 } --在结果文档中新增一个键。
+            ... } )
+                
+                
+                
+     
+   
+   
+   
+
   
    
   
