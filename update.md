@@ -1,6 +1,6 @@
 #  更新操作  
 1. 整体更新
-1.1  db.collection.updateOne(<filter>,<update>);
+1.1  db.collection.updateOne(\<filter\>,\<update\>);
 
 |filter | update | 
 |--- |----- |
